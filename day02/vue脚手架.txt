@@ -1,0 +1,22 @@
+1.基于交互式命令行的方式，创建新版vue项目
+	vue create my-project
+2.基于图形化界面的方式，创建新版vue项目
+	vue ui
+3.基于2.x的旧模板，创建旧版vue项目
+	npm install -g @vue/cli-init
+	vue init webpack my-project
+4.Element-UI的基本使用
+	1.安装依赖包npm i element-ui -s
+	2.导入Element-UI相关的资源
+	//导入组件库
+	import ElementUI from 'element-ui'
+	//导入组件相关样式
+	import 'element-ui/lib/theme-chalk/index.css'
+	//配置Vue插件
+	Vue.use(ElementUI)
+5.基于图形化界面自动安装
+	1.运行vue ui命令，打开图形化界面
+	2.通过vue 项目管理器，进入具体的项目配置面板
+	3.点击插件->添加插件，进入插件查询面板
+	4.搜索vue-cli-plugin-element并安装
+	5.配置插件，实现按需导入，从而减少打包后项目的体积

@@ -1,0 +1,81 @@
+1.npm i jquery -s
+2.npm install webpack webpack-cli -D安装webpack相关的包
+3.在项目根目录中，创建名为webpack.config.js的webpack配置文件
+4.在webpack的配置文件中，初始化如下基本配置
+	module.exports={
+		mode:'development'//mode用来指定构建模式
+	}
+5.在package.json配置文件中的scripts节点下，新增dev脚本如下：
+	"scripts":{
+		"dev":"webpack" //节点下的脚本，可以通过npm run运行
+	}
+6.在终端中运行npm run dev命令，启动webpack进行项目打包
+
+7.配置webpack的自动打包功能
+	1.运行npm install webpack-dev-server -D命令，安装运行项目自动打包的工具
+	2.修改package.json->scripts中的dev命令如下：
+		“scripts”:{
+			"dev":"webpack-dev-server"//script节点下的脚本，可以通过npm run 运行
+		}
+	3.将src->index.html中，script脚本的引用路径，修改为"/buldle.js"
+	4.运行npm run dev 命令，重新进行打包
+	5.在浏览器中访问http://localhost:8080地址，查看自动打包效果
+
+8.配置html-webpack-plugin生成预览页面
+	1.运行npm install html-webpack-plugin -D
+	2.修改webpack.config.js文件头部区域，添加如下配置信息
+		const HtmlWebpackPlugin = require('html-webpack-plugin')
+		const htmlplugin = new HtmlWebpackPlugin({
+			template:'./src/index.html'
+			filename:'index.html'
+		})
+	3.修改webpack.config.js文件中向暴露的配置对象，新增如下配置节点：
+		module.exports = {
+			plugins:[htmlplugin]
+		}
+9.打包处理css 文件
+	1.运行npm i style-loader css-loader -D,安装处理css文件的loader
+	2.在webpack.config.js的module->rules数组中，添加loader规则如下：
+		module:{
+			rules:[
+				{test:/\.css$/,use:['style-loader','css-loader']}
+			]
+		}
+		其中，test表示匹配的文件类型，use表示对应要调用的loader
+10.打包处理less文件
+	1.运行npm i less-loader less -D,安装处理less文件的loader
+11.打包处理scss文件
+	1.运行npm i sass-loader node-sass -D,安装处理less文件的loader
+12.配置postCSS自动添加css的兼容前缀
+	1.运行npm i postcss-loader autoprefixer -D命令
+	2.在项目根目录中创建postcss的配置文件postcss.config.js,并初始化如下配置
+		const autoprefixer = require('autoprefixer')
+		module.exports = {
+			plugins:[autoprefixer]
+		}
+	3.在webpack.config.js的module->rules数组中，修改css的loader规则如下：
+		module:{
+			rules:[
+				{test:/\.css$/,use:['style-loader','css-loader','postcss-loader']}
+			]
+		}
+13.打包样式表中的图片和字体文件
+	1.运行npm i url-loader file-loader -D 命令
+	2.在webpack.config.js的module->rules数组中，添加loader规则如下：	
+	
+14.打包处理js文件中的高级语法
+	1.安装babel转换器相关的包：npm i babel-loader @babel/core @babel/runtime -D
+	2.安装babel语法插件相关的包：npm i @babel/preset-env @babel/plugin-transform-runtime @babel/plugin-proposal-class-properties -D
+	3.在项目根目录中，创建babel配置文件babel.config.js并初始化基本配置：
+	4.在webpack.config.js的module->rules数组中，添加loader规则如下
+15.webpack中配置vue组件的加载器
+	1.运行npm i vue-loader vue-template-compiler -D
+	2.在webpack.config.js配置文件中，添加vue-loader的配置项如下：
+16.在webpack项目中使用vue
+	1.运行npm i vue -s 安装vue
+	2.在src->index.js入口文件中，通过 import vue from 'vue'来导入vue构造函数
+	3.创建vue的实例对象，并指定要控制的el区域
+	4.通过render函数渲染App根组件
+	
+
+	
